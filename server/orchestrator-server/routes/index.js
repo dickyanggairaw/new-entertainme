@@ -3,9 +3,9 @@ const express = require('express')
 const router = express.Router()
 const movieRoute = require('./movieRoute')
 const tvSeriesRoute = require('./seriesRoute')
-router.get('/', (req, res) => {
-  res.send('halllloooooooo')
-})
+const OrchestratorController = require('../controllers/orchestratorController')
+
+router.get('/entertainme', OrchestratorController.getAll)
 
 router.use('/movies', movieRoute)
 router.use('/tvseries', tvSeriesRoute)
