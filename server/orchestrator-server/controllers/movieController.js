@@ -28,6 +28,7 @@ class MovieController {
   static async createMovie (req, res, next) {
     try {
       await redis.del("movies")
+      await redis.del("entertainMe")
       const response = await Movie.create(req.body)
       res.status(201).json(response.data)
     } catch (error) {
@@ -37,6 +38,7 @@ class MovieController {
   static async deleteMovie (req, res, next) {
     try {
       await redis.del("movies")
+      await redis.del("entertainMe")
       const response = await Movie.destroy(req.params.id)
       res.status(200).json({message: "Success delete movie"})
     } catch (error) {
@@ -46,6 +48,7 @@ class MovieController {
   static async updateMovie (req, res, next) {
     try {
       await redis.del("movies")
+      await redis.del("entertainMe")
       const response = await Movie.update(req.params.id, req.body)
       res.status(200).json(response.data)
     } catch (error) {

@@ -28,6 +28,7 @@ class TvSerieController {
   static async createTvSerie (req, res, next) {
     try {
       await redis.del("tvseries")
+      await redis.del("entertainMe")
       const response = await TvSerie.create(req.body)
       res.status(201).json(response.data)
     } catch (error) {
@@ -37,6 +38,7 @@ class TvSerieController {
   static async deleteTvSerie (req, res, next) {
     try {
       await redis.del("tvseries")
+      await redis.del("entertainMe")
       const response = await TvSerie.destroy(req.params.id)
       res.status(200).json({message: "Success delete Tv Serie"})
     } catch (error) {
@@ -46,6 +48,7 @@ class TvSerieController {
   static async updateTvSerie (req, res, next) {
     try {
       await redis.del("tvseries")
+      await redis.del("entertainMe")
       const response = await TvSerie.update(req.params.id, req.body)
       res.status(200).json(response.data)
     } catch (error) {
