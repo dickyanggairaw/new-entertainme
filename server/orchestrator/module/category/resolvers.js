@@ -32,61 +32,57 @@ const resolvers = {
   },
   Mutation: {
     addSerie: async (_, args) => {
-      await redis.del("tvSeries")
-      const newData = {
-        title: args.title,
-        overview: args.overview,
-        poster_path: args.poster_path,
-        popularity: args.popularity,
-        tags: args.tags
+      try {
+        await redis.del("tvSeries")
+        const newData = {
+          title: args.serie.title,
+          overview: args.serie.overview,
+          poster_path: args.serie.poster_path,
+          popularity: args.serie.popularity,
+          tags: args.serie.tags
+        }
+        const { data } = await axios({
+          url: "http://localhost:4002/tvseries",
+          method: 'POST',
+          data: newData
+        })
+        return data[0]
+      } catch (error) {
+        throw error
       }
-      return axios({
-        url: "http://localhost:4002/tvseries",
-        method: 'POST',
-        data: newData
-      })
-        .then(({ data }) => {
-          return data[0]
-        })
-        .catch(err => {
-          throw err
-        })
     },
     updateSerie: async (_, args) => {
-      await redis.del("tvSeries")
-      const newData = {
-        title: args.title,
-        overview: args.overview,
-        poster_path: args.poster_path,
-        popularity: args.popularity,
-        tags: args.tags
+      try {
+        await redis.del("tvSeries")
+        const newData = {
+          title: args.serie.title,
+          overview: args.serie.overview,
+          poster_path: args.serie.poster_path,
+          popularity: args.serie.popularity,
+          tags: args.serie.tags
+        }
+        const { data } = await axios({
+          url: "http://localhost:4002/tvseries/" + args.id,
+          method: 'PUT',
+          data: newData
+        })
+        return data
+      } catch (error) {
+        throw error
       }
-      return axios({
-        url: "http://localhost:4002/tvseries/" + args.id,
-        method: 'PUT',
-        data: newData
-      })
-        .then(({ data }) => {
-          console.log(data)
-          return data
-        })
-        .catch(err => {
-          throw err
-        })
     },
     deleteSerie: async (_, args) => {
-      await redis.del("tvSeries")
-      const { id } = args
-      return axios({
-        url: "http://localhost:4002/tvseries/" + id,
-        method: "DELETE"
-      })
-        .then(({ data }) => {
-          return data
+      try {
+        await redis.del("tvSeries")
+        const { id } = args
+        const { data } = await axios({
+          url: "http://localhost:4002/tvseries/" + id,
+          method: "DELETE"
         })
-        .catch(err => {
-          throw err
-        })
+        return data
+      } catch (error) {
+        throw error
+      }
     },
   }
 }

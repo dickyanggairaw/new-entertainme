@@ -35,11 +35,11 @@ const resolvers = {
       try {
         await redis.del("movies")
         const newData = {
-          title: args.title,
-          overview: args.overview,
-          poster_path: args.poster_path,
-          popularity: args.popularity,
-          tags: args.tags
+          title: args.movie.title,
+          overview: args.movie.overview,
+          poster_path: args.movie.poster_path,
+          popularity: args.movie.popularity,
+          tags: args.movie.tags
         }
         const { data } = await axios({
           url: "http://localhost:4001/movies",
@@ -55,11 +55,11 @@ const resolvers = {
       try {
         await redis.del("movies")
         const newData = {
-          title: args.title,
-          overview: args.overview,
-          poster_path: args.poster_path,
-          popularity: args.popularity,
-          tags: args.tags
+          title: args.movie.title,
+          overview: args.movie.overview,
+          poster_path: args.movie.poster_path,
+          popularity: args.movie.popularity,
+          tags: args.movie.tags
         }
         const { data } = await axios({
           url: "http://localhost:4001/movies/" + args.id,
@@ -72,18 +72,17 @@ const resolvers = {
       }
     },
     deleteMovie: async (_, args) => {
-      await redis.del("movies")
-      const { id } = args
-      return axios({
-        url: "http://localhost:4001/movies/" + id,
-        method: "DELETE"
-      })
-        .then(({ data }) => {
-          return data
+      try {
+        await redis.del("movies")
+        const { id } = args
+        const { data } = await axios({
+          url: "http://localhost:4001/movies/" + id,
+          method: "DELETE"
         })
-        .catch(err => {
-          throw err
-        })
+        return data
+      } catch (error) {
+        throw error
+      }
     },
   }
 }

@@ -19,27 +19,18 @@ const typeDefs = gql`
     movies: [Movie]
     movie(id: ID!): Movie
   }
-  type InputCreate {
+  input InputMovie {
     title: String
     overview: String
     poster_path: String
+    popularity: Float
     tags: [String]
   }
   extend type Mutation {
-    addMovie(
-      title: String,
-      overview: String,
-      poster_path: String,
-      popularity: Float,
-      tags: [String]
-    ): Movie
+    addMovie(movie: InputMovie): Movie
     updateMovie(
       id: ID,
-      title: String,
-      overview: String,
-      poster_path: String,
-      popularity: Float,
-      tags: [String]
+      movie: InputMovie
     ): Update
     deleteMovie(id: ID!): Delete
   }

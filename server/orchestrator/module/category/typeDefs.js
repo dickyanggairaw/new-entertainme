@@ -19,21 +19,18 @@ const typeDefs = gql`
     tvSeries: [TvSerie]
     tvSerie(id: ID!): TvSerie
   }
+  input InputSerie {
+    title: String
+    overview: String
+    poster_path: String
+    popularity: Float
+    tags: [String]
+  }
   extend type Mutation {
-    addSerie(
-      title: String,
-      overview: String,
-      poster_path: String,
-      popularity: Float,
-      tags: [String]
-    ): TvSerie
+    addSerie(serie: InputSerie): TvSerie
     updateSerie(
       id: ID,
-      title: String,
-      overview: String,
-      poster_path: String,
-      popularity: Float,
-      tags: [String]
+      serie:InputSerie
     ): UpdateSerie
     deleteSerie(id: ID!): DeleteSerie
   }
