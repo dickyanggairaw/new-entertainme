@@ -27,7 +27,7 @@ const typeDefs = gql`
     tags: [String]
   }
   extend type Mutation {
-    addMovie(movie: InputMovie): Movie
+    addMovie(Movie: InputMovie): Movie
     updateMovie(
       id: ID,
       movie: InputMovie

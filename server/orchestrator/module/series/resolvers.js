@@ -35,11 +35,11 @@ const resolvers = {
       try {
         await redis.del("tvSeries")
         const newData = {
-          title: args.serie.title,
-          overview: args.serie.overview,
-          poster_path: args.serie.poster_path,
-          popularity: args.serie.popularity,
-          tags: args.serie.tags
+          title: args.Serie.title,
+          overview: args.Serie.overview,
+          poster_path: args.Serie.poster_path,
+          popularity: args.Serie.popularity,
+          tags: args.Serie.tags
         }
         const { data } = await axios({
           url: "http://localhost:4002/tvseries",

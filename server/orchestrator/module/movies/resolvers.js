@@ -35,12 +35,13 @@ const resolvers = {
       try {
         await redis.del("movies")
         const newData = {
-          title: args.movie.title,
-          overview: args.movie.overview,
-          poster_path: args.movie.poster_path,
-          popularity: args.movie.popularity,
-          tags: args.movie.tags
+          title: args.Movie.title,
+          overview: args.Movie.overview,
+          poster_path: args.Movie.poster_path,
+          popularity: args.Movie.popularity,
+          tags: args.Movie.tags
         }
+        console.log(args)
         const { data } = await axios({
           url: "http://localhost:4001/movies",
           method: 'POST',

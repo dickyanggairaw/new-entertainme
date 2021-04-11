@@ -27,7 +27,7 @@ const typeDefs = gql`
     tags: [String]
   }
   extend type Mutation {
-    addSerie(serie: InputSerie): TvSerie
+    addSerie(Serie: InputSerie): TvSerie
     updateSerie(
       id: ID,
       serie:InputSerie
