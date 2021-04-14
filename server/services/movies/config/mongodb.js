@@ -1,9 +1,12 @@
 const { MongoClient } = require('mongodb')
 
-const uri = "mongodb://localhost:27017"
-// const uri = 'mongodb+srv://$["Rahil1993@admin"]:$["1wlvjdVjR2WUVWhB"]@$["Movies"]/$["entertainMe"]?retryWrites=true'
+// const uri = "mongodb://localhost:27017"
+const uri = 'mongodb+srv://useradmin:admin@movies.xdy7i.mongodb.net/Movies?retryWrites=true&w=majority'
 
-const client = MongoClient(uri)
+const client = MongoClient(uri, {
+  useNewUrlParser : true,
+  useUnifiedTopology : true
+})
 let database = null
 
 function run (cb) {
