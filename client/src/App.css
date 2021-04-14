@@ -80,3 +80,7 @@ body{
   /* background-image: url("https://getwallpapers.com/wallpaper/full/0/7/c/373762.jpg"); */
   background-color: rgb(255, 255, 255);
 }
+.btn-edit {
+  background-color: rgb(0, 55, 255);
+  color: white;
+}

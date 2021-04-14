@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import { gql, useMutation, useQuery } from "@apollo/client"
 import { FETCH_MOVIES } from '../query'
@@ -37,6 +37,17 @@ export default function EditForm() {
     }]
   })
   const { loading, error, data } = useQuery(FIND_MOVIE);
+  useEffect(()=>{
+    if(data){
+      setInput({
+        title: data.movie.title,
+        overview: data.movie.overview,
+        poster_path: data.movie.poster_path,
+        tags: data.movie.tags.join(' '),
+        popularity: data.movie.popularity
+      })
+    }    
+  }, [data])
   function handleChange(e) {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value })
@@ -68,6 +79,7 @@ export default function EditForm() {
           onChange={(e) => handleChange(e)}
           placeholder="title"
           defaultValue={data.movie.title}
+          required
         />
         <br />
         <input
@@ -78,6 +90,7 @@ export default function EditForm() {
           onChange={(e) => handleChange(e)}
           placeholder="overview"
           defaultValue={data.movie.overview}
+          required
         />
         <br />
         <input
@@ -88,6 +101,7 @@ export default function EditForm() {
           onChange={(e) => handleChange(e)}
           placeholder="poster_path"
           defaultValue={data.movie.poster_path}
+          required
         />
         <br />
         <input
@@ -98,6 +112,7 @@ export default function EditForm() {
           onChange={(e) => handleChange(e)}
           placeholder="tags"
           defaultValue={data.movie.tags.join(" ")}
+          required
         />
         <br />
         <input
@@ -108,9 +123,10 @@ export default function EditForm() {
           onChange={(e) => handleChange(e)}
           placeholder="popularity"
           defaultValue={data.movie.popularity}
+          required
         />
         <br />
-        <button type="submit">Submit</button>
+        <button className="btn btn-dark btn-sm" type="submit">Submit</button>
       </form>
     </div>
   );

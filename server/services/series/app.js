@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const PORT = 4002
+const cors = require('cors')
 
 const router = require('./routes')
 const {run} = require('./config/mongodb')
@@ -13,7 +14,7 @@ run(cb => {
     console.log('fail connect mongo')
   }
 })
-
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 

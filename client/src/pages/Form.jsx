@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { FETCH_MOVIES } from "../query";
 
@@ -12,11 +12,10 @@ export default function Form() {
     tags: "",
     popularity: 0,
   });
-  const { slug } = useParams();
 
   const ADD_DATA = gql`
-    mutation Add${slug}($type: Input${slug}) {
-        add${slug}(${slug}: $type) {
+    mutation AddMovie($type: InputMovie) {
+        addMovie(Movie: $type) {
         _id
         }
     }`;
@@ -57,6 +56,7 @@ export default function Form() {
             id=""
             onChange={(e) => handleChange(e)}
             placeholder="type an title"
+            required
           />
         </div>
         <div className="form-group">
@@ -67,6 +67,7 @@ export default function Form() {
             id=""
             onChange={(e) => handleChange(e)}
             placeholder="overview"
+            required
           />
         </div> 
         <div className="form-group">
@@ -77,6 +78,7 @@ export default function Form() {
             id=""
             onChange={(e) => handleChange(e)}
             placeholder="poster_path"
+            required
           />
         </div>
         <div className="form-group">
@@ -87,6 +89,7 @@ export default function Form() {
             id=""
             onChange={(e) => handleChange(e)}
             placeholder="tags"
+            required
           />
         </div>
         <div className="form-group">
@@ -97,9 +100,10 @@ export default function Form() {
             id=""
             onChange={(e) => handleChange(e)}
             placeholder="popularity"
+            required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button className="btn btn-dark btn-sm" type="submit">Submit</button>
       </form>
     </div>
   );

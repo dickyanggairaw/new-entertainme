@@ -24,7 +24,7 @@ function App() {
           <Route path="/editForm/:id">
             <EditForm />
           </Route>
-          <Route path="/form/:slug">
+          <Route path="/form">
             <Form />
           </Route>
           <Route path="/movies">

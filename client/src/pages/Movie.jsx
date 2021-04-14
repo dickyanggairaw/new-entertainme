@@ -9,7 +9,7 @@ export default function Movie() {
   const history = useHistory();
 
   function addMovie() {
-    history.push("/form/Movie");
+    history.push("/form");
   }
 
   if (loading) return <div className="loader container">Loading</div>;

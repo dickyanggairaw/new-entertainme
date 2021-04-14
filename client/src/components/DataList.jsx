@@ -43,31 +43,42 @@ export default function DataList(props) {
     }
   }
   return (
-    <div className="col-3 mb-4">
-      <div className="card" >
-        <img src={data.poster_path} className="img" alt="" />
-        <div className="card-body">
-          <h5>{data.title}</h5>
-          <p>{data.overview}</p>
-          {
-            data.tags?.map((tag, index) => {
-              return <TagList key={index} tag={tag} ></TagList>
-            })
-          }
-          <br />
-          {
-            title === 'movie' ? <div>
-              <button className="btn btn-primary btn-sm w-20 m-2" onClick={editForm}>
-                Edit
-              </button>
-              <button className="btn btn-danger btn-sm w-20 m-2" onClick={deleteMovie}>
-                DELETE
-              </button>
-              <img src={heart} onClick={(event) => favoriteMovie(event)} alt="" className="above-right-icon"/>
-            </div> : ''
-          }          
+    <>
+      <div className="col-3 mb-4">
+        <div className="card" >
+          <img src={data.poster_path} className="img" alt="" />
+          <div className="card-body">
+            {
+              title === 'movie' ? <div>
+                <img src={heart} onClick={(event) => favoriteMovie(event)} alt="" className="above-right-icon"/>
+              </div> : ''
+            }          
+          </div>
         </div>
       </div>
-    </div>
+      <div className="col-3">
+        <div>
+        <h4>{data.title}</h4>
+            <p>{data.overview}</p>
+            {
+              data.tags?.map((tag, index) => {
+                return <TagList key={index} tag={tag} ></TagList>
+              })
+            }
+            <br />
+            <p>{data.popularity}</p>
+            {
+              title === 'movie' ? <div>
+                <button className="btn btn-edit btn-sm w-20 m-2" onClick={editForm}>
+                  Edit
+                </button>
+                <button className="btn btn-danger btn-sm w-20 m-2" onClick={deleteMovie}>
+                  DELETE
+                </button>
+              </div> : ''
+            }  
+        </div>
+      </div>
+    </>
   );
 }
