@@ -4,39 +4,34 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Home from './pages/Home'
 import Serie from './pages/Serie'
 import Movie from './pages/Movie'
 import Form from './pages/Form'
+import EditForm from './pages/EditForm'
+import Favorite from './pages/Favorite'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/movies">Movie</Link>
-            </li>
-            <li>
-              <Link to="/series">Serie</Link>
-            </li>
-          </ul>
-        </nav>
-
+        <Navbar />
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-        <Route path="/form/:slug">
+          <Route path="/editForm/:id">
+            <EditForm />
+          </Route>
+          <Route path="/form/:slug">
             <Form />
           </Route>
           <Route path="/movies">
             <Movie />
+          </Route>
+          <Route path="/favorites">
+            <Favorite />
           </Route>
           <Route path="/series">
             <Serie />
