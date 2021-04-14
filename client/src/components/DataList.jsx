@@ -47,13 +47,11 @@ export default function DataList(props) {
       <div className="col-3 mb-4">
         <div className="card" >
           <img src={data.poster_path} className="img" alt="" />
-          <div className="card-body">
-            {
+          {
               title === 'movie' ? <div>
                 <img src={heart} onClick={(event) => favoriteMovie(event)} alt="" className="above-right-icon"/>
               </div> : ''
-            }          
-          </div>
+            } 
         </div>
       </div>
       <div className="col-3">

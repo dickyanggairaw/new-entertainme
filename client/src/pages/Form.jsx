@@ -27,7 +27,6 @@ export default function Form() {
     ],
   });
   function handleChange(e) {
-    console.log("bisa");
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
     // console.log(input)
@@ -49,6 +48,7 @@ export default function Form() {
     <div>
       <form className="container" action="" onSubmit={(e) => addForm(e)}>
         <div className="form-group">
+          <label>Title</label>
           <input
             className="form-control"
             type="text"
@@ -60,6 +60,7 @@ export default function Form() {
           />
         </div>
         <div className="form-group">
+          <label>Overview</label>
           <input
             className="form-control"
             type="text"
@@ -71,6 +72,7 @@ export default function Form() {
           />
         </div> 
         <div className="form-group">
+          <label>Image</label>
           <input
             className="form-control"
             type="text"
@@ -82,17 +84,20 @@ export default function Form() {
           />
         </div>
         <div className="form-group">
+          <label>Tags</label><br/>
+          <small>Example: input with space</small>
           <input
             className="form-control"
             type="text"
             name="tags"
             id=""
             onChange={(e) => handleChange(e)}
-            placeholder="tags"
+            placeholder="action drama"
             required
           />
         </div>
         <div className="form-group">
+          <label>Popularity</label>
           <input
             className="form-control"
             type="text"

@@ -11,6 +11,7 @@ export default function Serie() {
   const tvSeries = data.tvSeries;
   return (
     <div className="container">
+      <h2>TV Serie List</h2>
       <div className="row">
         {tvSeries.map((serie, index) => {
           return <DataList key={index} title={"serie"} data={serie} />;

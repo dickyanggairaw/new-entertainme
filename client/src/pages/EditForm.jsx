@@ -71,6 +71,7 @@ export default function EditForm() {
   return (
     <div>
       <form className="container" action="" onSubmit={(e) => updateForm(e)}>
+        <label>Title</label>
         <input
           className="form-control"
           type="text"
@@ -81,6 +82,7 @@ export default function EditForm() {
           defaultValue={data.movie.title}
           required
         />
+        <label>Overview</label>
         <br />
         <input
           className="form-control"
@@ -92,6 +94,7 @@ export default function EditForm() {
           defaultValue={data.movie.overview}
           required
         />
+        <label>Image</label>
         <br />
         <input
           className="form-control"
@@ -103,6 +106,8 @@ export default function EditForm() {
           defaultValue={data.movie.poster_path}
           required
         />
+        <label>Tags</label><br/>
+        <small>Example: input with space</small>
         <br />
         <input
           className="form-control"
@@ -110,10 +115,11 @@ export default function EditForm() {
           name="tags"
           id=""
           onChange={(e) => handleChange(e)}
-          placeholder="tags"
+          placeholder="action drama"
           defaultValue={data.movie.tags.join(" ")}
           required
         />
+        <label>Popularity</label>
         <br />
         <input
           className="form-control"

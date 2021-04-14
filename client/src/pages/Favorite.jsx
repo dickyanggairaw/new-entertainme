@@ -7,6 +7,7 @@ export default function Favorite () {
   const favorites = useReactiveVar(favoriteVars)
   return (
     <div className="container">
+      <h2>Favorite</h2>
       <div className="row">
         {
           favorites.length === 0 ? <div className="loader container">dont have favorite</div> :

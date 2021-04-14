@@ -17,6 +17,7 @@ export default function Movie() {
   const movies = data.movies;
   return (
     <div className="container">
+      <h2>Movie List</h2>
       <button className="btn btn-dark w-10 mb-2 btn-sm" onClick={addMovie}>
         Add Movie
       </button>
